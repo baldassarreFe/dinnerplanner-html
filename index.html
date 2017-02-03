@@ -18,7 +18,7 @@
                 </div>
             </div>
         </nav>
-        <div id="initial-page" class="container fill"> 
+        <div id="initial-page"  class="container fill">
             <div class="panel panel-default bottomleft">
                 <div class="panel-heading">
                     <h3 class="panel-title">A Home Dinner Service</h3>
@@ -30,18 +30,38 @@
             </div>
         </div>
         <div id="main-page" style="display:none" class="container">
-            <h1>Dinner planner</h1>
-            <div id="number-of-guests">
-                <div>
-                    Number of guests: <span id="numberOfGuests"></span>
-                </div>
-                <div>
-                    <button id="minusGuest" class="btn">
-                        <span class="glyphicon glyphicon-minus"></span>
-                    </button>
-                    <button id="plusGuest" class="btn">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="dinnerOverview" class="col-md-2">
+                        <div class="well">
+                            <h4>My Dinner</h4>
+                            <hr>
+                            <div id="number-of-guests">
+                                <div>
+                                    Pepople: <span id="numberOfGuests">0</span>
+                                </div>
+                                <div>
+                                    <button id="minusGuest" class="btn-xs">
+                                        <span class="glyphicon glyphicon-minus"></span>
+                                    </button>
+                                    <button id="plusGuest" class="btn-xs">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="well">
+                            <h4>My Menu</h4>
+                            <hr>
+                            <ul id="selectedDishesList" class="list-unstyled">
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-default disabled">Confirm Dinner
+			</button>
+                    </div>
+                    <div class="col-md-10" style="overflow:auto">
+                        <h4>My Dinner</h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,9 +73,11 @@
         <!-- The application JavaScript code -->
         <script src="js/app.js"></script>
         <script src="js/model/dinnerModel.js"></script>
-        <script src="js/view/exampleView.js"></script>
+        <script src="js/view/numberOfGuestsView.js"></script>
         <script src="js/view/navigationView.js"></script>
-        <script src="js/controller/exampleViewController.js"></script>
+        <script src="js/view/selectedDishesView.js"></script>
+        <script src="js/controller/numberOfGuestsViewController.js"></script>
         <script src="js/controller/navigationViewController.js"></script>
+        <script src="js/controller/selectedDishesViewController.js"></script>
     </body>
 </html>

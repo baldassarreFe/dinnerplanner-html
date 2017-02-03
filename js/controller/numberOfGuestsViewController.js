@@ -1,5 +1,8 @@
 //ExampleViewController Object constructor
-var ExampleViewController = function(view, model ) {
+var NumberOfGuestsViewController = function(view, model ) {
+
+	// REMOVE
+	view.numberOfGuests.textContent = model.getNumberOfGuests();
 	
 	view.plusButton.click(function(){
 		model.setNumberOfGuests(model.getNumberOfGuests() + 1);
