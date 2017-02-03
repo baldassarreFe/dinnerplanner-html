@@ -7,6 +7,7 @@
         <title>Dinner planner</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -14,44 +15,33 @@
                 <div class="navbar-header">
                     <h1 style="display: inline-block">HOMELETTE</h1>
                     <p style="display: inline-block">From the best chefs in the world directly into your kitchen</p>
-                
-                
                 </div>
             </div>
         </nav>
-        <div id="navigation-view">
-            <div id="initial-page" class="container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">A Home Dinner Service</h3>
-                                </div>
-                                <div class="panel-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <a class="btn btn-primary btn-sm" role="button">Create new dinner</a>
-                                </div>
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-                    <div class="row"></div>
+        <div id="initial-page" class="container fill"> 
+            <div class="panel panel-default bottomleft">
+                <div class="panel-heading">
+                    <h3 class="panel-title">A Home Dinner Service</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <a class="btn btn-primary btn-sm" role="button">Create new dinner</a>
                 </div>
             </div>
-            <div id="main-page" style="display:none" class="container">
-                <h1>Dinner planner</h1>
-                <div id="number-of-guests">
-                    <div>
-                        Number of guests: <span id="numberOfGuests"></span>
-                    </div>
-                    <div>
-                        <button id="minusGuest" class="btn">
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                        <button id="plusGuest" class="btn">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </div>
+        </div>
+        <div id="main-page" style="display:none" class="container">
+            <h1>Dinner planner</h1>
+            <div id="number-of-guests">
+                <div>
+                    Number of guests: <span id="numberOfGuests"></span>
+                </div>
+                <div>
+                    <button id="minusGuest" class="btn">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                    <button id="plusGuest" class="btn">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
                 </div>
             </div>
         </div>
