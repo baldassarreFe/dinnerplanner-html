@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Dinner planner</title>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </nav>
-        <div id="initial-page" class="container-fill">
+        <div id="initial-page" class="container-fluid">
             <div class="panel panel-default bottomleft">
                 <div class="panel-heading">
                     <h3 class="panel-title">A Home Dinner Service</h3>
@@ -30,30 +30,31 @@
                 </div>
             </div>
         </div>
-        <div id="main-page" style="display:none" class="container-fill">
+        <div id="main-page" style="display:none" class="container fill pre-scrollable">
             <div class="row">
                 <div id="dinnerOverview" class="col-md-2">
                     <div class="well">
                         <h4>My Dinner</h4>
                         <hr>
-                        <div id="number-of-guests">
-                            <div>
-                                Pepople: <span id="numberOfGuests">0</span>
-                            </div>
-                            <div>
-                                <button id="minusGuest" class="btn-xs">
-                                    <span class="glyphicon glyphicon-minus"></span>
-                                </button>
-                                <button id="plusGuest" class="btn-xs">
-                                    <span class="glyphicon glyphicon-plus"></span>
-                                </button>
-                            </div>
+                        <div id="numberOfGuestsView">
+                            <div class="input-group number-spinner">
+                    				<span class="input-group-btn">
+                    					<button id="minusGuests" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+                    				</span>
+                    				<input id="numberOfGuests" type="text" class="form-control text-center readonly">
+                    				<span class="input-group-btn">
+                    					<button id="plusGuests" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+                    				</span>
+                    			</div>
                         </div>
                     </div>
-                    <div class="well">
+                    <div id="selectedDishesView" class="well">
                         <h4>My Menu</h4>
-                        <hr>
+                        <hr/>
                         <ul id="selectedDishesList" class="list-unstyled"></ul>
+                        <hr/>
+                        <h3>Total:<span id="totalPrice" class="label label-default pull-right"></span>
+                        </h3>
                     </div>
                     <button type="button" class="btn btn-default disabled">Confirm Dinner</button>
                 </div>
@@ -91,7 +92,7 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <!-- The application JavaScript code -->
 <script src="js/app.js"></script>
 <script src="js/model/dinnerModel.js"></script>

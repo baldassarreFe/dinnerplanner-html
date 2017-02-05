@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    background: url(http://placehold.it/1920x1080) no-repeat center center fixed;
+    background: url(../images/background.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -10,17 +10,18 @@ html, body {
 
 #searchBar {
   padding-bottom: 10px;
+  background-color: khaki;
 }
 
 #main-page {
     padding-left: 3px;
     padding-right: 3px;
+    overflow: auto;
 }
 
-#navbar {
-    height: 10%;
-    margin: 0;
-    margin: 0;
+.navbar {
+    background-color: orange;
+    margin-bottom: 0;
 }
 
 .fill {
@@ -33,9 +34,30 @@ html, body {
 
 .bottomleft {
     position: absolute;
-    bottom: 10%;
+    bottom: 5%;
     width: 30%;
     margin: 0;
+    background-color: khaki;
+}
+
+.btn-primary {
+  background-color: darkorange;
+  border-color: darkorange;
+}
+
+.btn-primary:hover {
+  background-color: darkorange;
+  border-color: darkorange;
+  filter: brightness(90%);
+}
+
+.badge {
+  background-color: darkorange;
+}
+
+.panel .panel-heading {
+  color: white;
+  background-color: darkorange;
 }
 
 .menu-list {
@@ -47,28 +69,40 @@ html, body {
     padding-right: 0;
 }
 
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .menu-list li {
     border-style: solid;
 }
 
 #main-page {
-    margin-left: 0;
     margin-right: 0;
+    background-color: khaki;
 }
 
 #dinnerOverview .well {
     padding:5px;
     margin-bottom:3px;
+    background-color: khaki;
+}
+
+#totalPrice {
+  background-color: darkorange;
 }
 
 .dish-card {
-  min-height: 360px;
+  min-height: 330px;
   max-width: 200px;
+  background-color: snow;
 }
 
 .dish-card .fade-buttons {
     opacity: 0.2;
     transition: opacity 0.4s ease-in-out;
+    color: orange;
 }
 
 .dish-card:hover .fade-buttons {
