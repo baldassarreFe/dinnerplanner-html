@@ -8,6 +8,10 @@ html, body {
     overflow: hidden;
 }
 
+#searchBar {
+  padding-bottom: 10px;
+}
+
 #main-page {
     padding-left: 3px;
     padding-right: 3px;
@@ -55,4 +59,24 @@ html, body {
 #dinnerOverview .well {
     padding:5px;
     margin-bottom:3px;
+}
+
+.dish-card {
+  min-height: 360px;
+  max-width: 200px;
+}
+
+.dish-card .fade-buttons {
+    opacity: 0.2;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.dish-card:hover .fade-buttons {
+    opacity: 1;
+    transition: none;
+}
+
+.dish-card>img {
+  min-width: 140px;
+  min-height: 140px;
 }

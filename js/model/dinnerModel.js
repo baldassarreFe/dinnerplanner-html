@@ -14,7 +14,7 @@ var DinnerModel = function() {
         return numberOfGuests
     }
 
-    // Returns the dish that is on the menu for selected type 
+    // Returns the dish that is on the menu for selected type
     this.getSelectedDish = function(type) {
         return selected.filter(function(dish) {
             return dish.type == type;
@@ -75,6 +75,10 @@ var DinnerModel = function() {
         }
     }
 
+    this.removeAllDishes = function() {
+        selected = [];
+    }
+
     //function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
     //you can use the filter argument to filter out the dish by name or ingredient (use for search)
     //if you don't pass any filter all the dishes will be returned
@@ -105,11 +109,11 @@ var DinnerModel = function() {
         }
     }
 
-    // the dishes variable contains an array of all the 
+    // the dishes variable contains an array of all the
     // dishes in the database. each dish has id, name, type,
     // image (name of the image file), description and
-    // array of ingredients. Each ingredient has name, 
-    // quantity (a number), price (a number) and unit (string 
+    // array of ingredients. Each ingredient has name,
+    // quantity (a number), price (a number) and unit (string
     // defining the unit i.e. "g", "slices", "ml". Unit
     // can sometimes be empty like in the example of eggs where
     // you just say "5 eggs" and not "5 pieces of eggs" or anything else.
@@ -250,6 +254,68 @@ var DinnerModel = function() {
             'quantity': 15,
             'unit': 'g',
             'price': 4
+        }]
+    }, {
+        'id': 104,
+        'name': 'Meat balls PLUS',
+        'type': 'main dish',
+        'image': 'meatballs.jpg',
+        'description': "Preheat an oven to 1400 degrees F (1200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.",
+        'ingredients': [{
+            'name': 'extra lean ground beef',
+            'quantity': 500,
+            'unit': 'g',
+            'price': 220
+        }, {
+            'name': 'sea salt',
+            'quantity': 13.7,
+            'unit': 'g',
+            'price': 33
+        }, {
+            'name': 'small onion, diced',
+            'quantity': 4.25,
+            'unit': '',
+            'price': 7
+        }, {
+            'name': 'garlic salt',
+            'quantity': 1.7,
+            'unit': 'g',
+            'price': 4
+        }, {
+            'name': 'Italian seasoning',
+            'quantity': 6,
+            'unit': 'g',
+            'price': 9
+        }, {
+            'name': 'dried oregano',
+            'quantity': 3,
+            'unit': 'g',
+            'price': 30
+        }, {
+            'name': 'crushed red pepper flakes',
+            'quantity': 6,
+            'unit': 'g',
+            'price': 32
+        }, {
+            'name': 'Worcestershire sauce',
+            'quantity': 63,
+            'unit': 'ml',
+            'price': 70
+        }, {
+            'name': 'milk',
+            'quantity': 200,
+            'unit': 'ml',
+            'price': 40
+        }, {
+            'name': 'grated Parmesan cheese',
+            'quantity': 50,
+            'unit': 'g',
+            'price': 80
+        }, {
+            'name': 'seasoned bread crumbs',
+            'quantity': 105,
+            'unit': 'g',
+            'price': 40
         }]
     }, {
         'id': 101,
