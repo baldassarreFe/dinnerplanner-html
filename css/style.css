@@ -33,11 +33,17 @@ html, body {
 }
 
 .bottomleft {
-    position: absolute;
-    bottom: 5%;
-    width: 30%;
-    margin: 0;
-    background-color: khaki;
+  position: absolute;
+  bottom: 5%;
+  width: 90%;
+  margin: 0;
+  background-color: khaki;
+}
+
+@media (min-width: 500px) {
+  .bottomleft {
+      width: 30%;
+  }
 }
 
 .btn-primary {
