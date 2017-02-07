@@ -23,7 +23,17 @@ var AllDishesViewController = function(view, model) {
 													</div>
 													<div class="modal-body">
 														<img class="img-responsive" src="${'images/' + dish.image}" alt="">
+														<h4>Preparation</h4>
 														<p>${dish.description}</p>
+														<h4>Ingredients</h4>
+														<table class="ingredients-list">
+															<tr>
+															  <th>Quantity</th>
+															  <th>Ingredient</th>
+															  <th>Price</th>
+															</tr>
+															${dish.ingredients.map(i => tableRow(i))}
+														</table>
 													</div>
 													<div class="modal-footer">
 															<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -49,4 +59,14 @@ var shortDescription = function(text) {
 	} else {
 		return text.substring(0, 57) + '...'
 	}
+}
+
+var tableRow = function(ingr) {
+	return `
+	<tr>
+	<td>${ingr.quantity} ${ingr.unit}</td>
+	<td>${ingr.name}</td>
+	<td>SEK ${ingr.price}</td>
+	</tr>
+	`
 }

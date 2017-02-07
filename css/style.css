@@ -24,6 +24,38 @@ html, body {
     margin-bottom: 0;
 }
 
+.navbar img {
+    height: 34px;
+    vertical-align: text-bottom;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+@media (max-width: 300px) {
+  .navbar img {
+      display: none;
+  }
+}
+
+table.ingredients-list {
+ width:100%
+}
+
+table.ingredients-list th {
+  font-weight: bold;
+  background-color: white;
+  border-bottom: 1.5px solid darkorange;
+}
+
+table.ingredients-list tr:nth-child(odd) { background: #ffd07a; }
+table.ingredients-list tr:nth-child(even) { background: #fffdb2; }
+
+table.ingredients-list tr:hover {filter: saturate(2);}
+
+table.ingredients-list tr td:nth-child(2):first-letter {
+    text-transform:capitalize;
+}
+
 .fill {
     position: relative;
     width: 100%;
