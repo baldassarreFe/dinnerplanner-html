@@ -8,7 +8,7 @@
         <title>Dinner planner</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/styling.css">
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -19,85 +19,123 @@
                 </div>
             </div>
         </nav>
-        <div id="initial-page" style="display:none" class="container-fluid">
-            <div class="panel panel-default bottomleft">
-                <div class="panel-heading">
-                    <h3 class="panel-title">A Home Dinner Service</h3>
+        <div id="overview-page" style="display: none;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="dinnerOverview" class="col-md-12">
+                        <h4 style="display: inline;">
+                            My Dinner<span>4
+                            </span>
+                            <button type="button" class="btn btn-sm btn-default pull-right">Go back and edit dinner </button>
+                        </h4>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <a class="btn btn-primary btn-sm" role="button">Create new dinner</a>
+                <div class="row">
+                    <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card">
+                        <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
+                        <img class="img-responsive" src="images/toast.jpg" alt="" width="140" height="140">
+                        <div class="caption">
+                            <h4>French toast</h4>
+                            <p>132.5 SEK </p>
+                        </div>
+                    </div>
+                    <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card">
+                        <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
+                        <img class="img-responsive" src="images/meatballs.jpg" alt="" width="140" height="140">
+                        <div class="caption">
+                            <h4>Meatballs</h4>
+                            <p>169.3 SEK </p>
+                        </div>
+                    </div>
+                    <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card">
+                        <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
+                        <img class="img-responsive" src="images/icecream.jpg" alt="" width="140" height="140">
+                        <div class="caption">
+                            <h4>Chocolate icecream</h4>
+                            <p>25 SEK </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumbnail total-card">
+                        <div>
+                            <h3>
+                                Total: 
+                            <span id="totalPrice" class="label label-default">341.20</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-lg btn-default center-block">Print Full Recipe</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="main-page" >
+        <div id="final-page" class="container-fluid fill pre-scrollable">
             <div class="row">
-                <div id="dinnerOverview" class="col-md-2">
-                    <div class="well">
-                        <h4>My Dinner</h4>
-                        <hr>
-                        <div id="numberOfGuestsView">
-                            <div class="input-group number-spinner">
-                    			
-                    				<input id="numberOfGuests" type="text" class="form-control text-center readonly">
-                    		<button type="button" class="btn btn-default" style="float:right"> Go back and edit dinner </button>		
-                    			</div>
-                        </div>
-                    </div>
-                    <div id="selectedDishesView" class="well">
-                        <h4>My Menu</h4>
-                        <hr/>
-                        <ul id="selectedDishesList" class="list-unstyled"></ul>
-                        <hr/>
-                        <h3>Total:<span id="totalPrice" class="label label-default pull-right"></span>
-                        </h3>
-                    </div>
-                    <button type="button" class="btn btn-default" style="float:center"> Print </button>
+            <div id="dinnerOverview" class="col-md-12">
+            <div class="well">
+                    <h4 style="display: inline;">
+                        My Dinner<span>4
+                            </span>
+                        <button type="button" class="btn btn-sm btn-default pull-right">Go back and edit dinner </button>
+                    </h4>
                 </div>
-                <div class="col-md-10" style="display:none">
-                    <div id="searchBar" class="form-inline mb-2">
-                        <h4>Select dish</h4>
-                        <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="search" id="searchInput" placeholder="Enter keywords">
-                        <button id="searchButton" class="btn btn-primary mb-2 mr-sm-2 mb-sm-0">Submit</button>
-                        <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="dishTypeFilter">
-                            <option>All</option>
-                            <option>Starters</option>
-                            <option>Main</option>
-                            <option>Dessert</option>
-                        </select>
-                    </div>
-                    <div id="allDishes" class="container-fluid pre-scrollable">
-                        <div id="starterDishes" class="row">
-                            <h3 class="col-lg-12">Starters</h3>
-                            <!--Dish cards appended here-->
-                        </div>
-                        <div id="mainDishes" class="row">
-                            <h3 class="col-lg-12">Main</h3>
-                            <!--Dish cards appended here-->
-                        </div>
-                        <div id="dessertDishes" class="row">
-                            <h3 class="page-header" class="col-lg-12">Dessert</h3>
-                            <!--Dish cards appended here-->
-                        </div>
-                    </div>
                 </div>
             </div>
+            
+            <div class="row">
+            <div class="col-12">
+            <table class="table table-responsive">
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="images/toast.jpg" alt="" width="140" height="140">
+                        </td>
+                        <td>
+                            <h1>Lasagna</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </td>
+                        <td>
+                            <h2>Preparation</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="images/toast.jpg" alt="" width="140" height="140">
+                        </td>
+                        <td>
+                            <h1>Lasagna</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </td>
+                        <td>
+                            <h2>Preparation</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            </div>
         </div>
-</div>
-<!-- Other stuff -->
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<!-- The application JavaScript code -->
-<script src="js/app.js"></script>
-<script src="js/model/dinnerModel.js"></script>
-<script src="js/view/numberOfGuestsView.js"></script>
-<script src="js/view/navigationView.js"></script>
-<script src="js/view/selectedDishesView.js"></script>
-<script src="js/view/allDishesView.js"></script>
-<script src="js/controller/numberOfGuestsViewController.js"></script>
-<script src="js/controller/navigationViewController.js"></script>
-<script src="js/controller/selectedDishesViewController.js"></script>
-<script src="js/controller/allDishesViewController.js"></script>
-</body></html>
+        <!-- Other stuff -->
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+        <!-- The application JavaScript code -->
+        <script src="js/app.js"></script>
+        <script src="js/model/dinnerModel.js"></script>
+        <script src="js/view/numberOfGuestsView.js"></script>
+        <script src="js/view/navigationView.js"></script>
+        <script src="js/view/selectedDishesView.js"></script>
+        <script src="js/view/allDishesView.js"></script>
+        <script src="js/controller/numberOfGuestsViewController.js"></script>
+        <script src="js/controller/navigationViewController.js"></script>
+        <script src="js/controller/selectedDishesViewController.js"></script>
+        <script src="js/controller/allDishesViewController.js"></script>
+    </body>
+</html>
