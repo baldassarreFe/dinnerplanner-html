@@ -1,7 +1,7 @@
 var AllDishesViewController = function(view, model) {
 	 this.addToGrid = function(dish, grid) {
 			var cardHtml = `
-			<div id="dish-${dish.id}" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card">
+				<div id="dish-${dish.id}" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card">
 					<img class="img-responsive" src="${'images/' + dish.image}" alt="" width="140" height="140">
 					<div class="caption">
 							<h4>${dish.name}</h4>

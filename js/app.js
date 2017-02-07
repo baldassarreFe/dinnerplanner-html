@@ -7,7 +7,7 @@ $(function() {
 		model.addDishToMenu(104);
 
     // 2 Load views from the DOM
-    var numberOfGuestsView = new NumberOfGuestsView($("#numberOfGuestsView"));
+    var numberOfGuestsView = new NumberOfGuestsView($(".number-of-guests-view"));
     var navigationView = new NavigationView($("body"));
     var selectedDishesView = new SelectedDishesView($("#selectedDishesView"));
     var allDishesView = new AllDishesView($("#allDishes"))

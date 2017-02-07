@@ -1,4 +1,5 @@
-var SelectedDishesViewController = function(view, model ) {
+var SelectedDishesViewController = function(view, model) {
+
 	this.addToList = function(dish){
 		view.list.append(
 			`
@@ -12,5 +13,12 @@ var SelectedDishesViewController = function(view, model ) {
 	}
 
 	model.getFullMenu().forEach(d => this.addToList(d));
+
 	view.totalPrice.text(model.getTotalMenuPrice());
+
+	if (model.getFullMenu().length==0) {
+		view.confirmButton.addClass('disabled');
+	} else {
+		view.confirmButton.removeClass('disabled');
+	}
 }

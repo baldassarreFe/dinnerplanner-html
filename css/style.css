@@ -19,6 +19,18 @@ html, body {
     overflow: auto;
 }
 
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
 .navbar {
     background-color: orange;
     margin-bottom: 0;
@@ -151,4 +163,37 @@ table.ingredients-list tr td:nth-child(2):first-letter {
 .dish-card>img {
   min-width: 140px;
   min-height: 140px;
+}
+
+.total-card {
+  min-height: 330px;
+  max-width: 200px;
+  background-color: white;
+  border: 0
+}
+
+.total-card div {
+    position: absolute;
+    bottom: 5%;
+}
+
+#overview-page .well {
+  width: 100%;
+  background: khaki;
+}
+
+#final-page table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+}
+
+#final-page td {
+    border: 0;
+
+    text-align: left;
+    padding: 8px;
+}
+
+#final-page #dinnerOverview {
+	background-color: khaki;
 }

@@ -37,12 +37,12 @@
                     <div class="well">
                         <h4>My Dinner</h4>
                         <hr>
-                        <div id="numberOfGuestsView">
+                        <div class="number-of-guests-view">
                             <div class="input-group number-spinner">
                     				<span class="input-group-btn">
                     					<button id="minusGuests" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
                     				</span>
-                    				<input id="numberOfGuests" type="text" class="form-control text-center readonly">
+                    				<input type="text" class="form-control text-center readonly number-of-guests">
                     				<span class="input-group-btn">
                     					<button id="plusGuests" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
                     				</span>
@@ -57,7 +57,7 @@
                         <h3>Total:<span id="totalPrice" class="label label-default pull-right"></span>
                         </h3>
                     </div>
-                    <button type="button" class="btn btn-default disabled">Confirm Dinner</button>
+                    <button type="button" class="btn btn-default">Confirm Dinner</button>
                 </div>
                 <div class="col-md-10">
                     <div id="searchBar" class="form-inline mb-2">
@@ -86,6 +86,103 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div id="overview-page" style="display: none;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="well number-of-guests-view">
+                          <h4 style="display: inline;">My Dinner <span class="number-of-guests"></span><button type="button" class="btn btn-sm btn-default pull-right go-back-button">Go back and edit dinner</button></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-centered">
+                    <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card col-centered">
+                        <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
+                        <img class="img-responsive" src="images/toast.jpg" alt="" width="140" height="140">
+                        <div class="caption">
+                            <h4>French toast</h4>
+                            <p>132.5 SEK </p>
+                        </div>
+                    </div>
+                    <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card col-centered">
+                        <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
+                        <img class="img-responsive" src="images/meatballs.jpg" alt="" width="140" height="140">
+                        <div class="caption">
+                            <h4>Meatballs</h4>
+                            <p>169.3 SEK </p>
+                        </div>
+                    </div>
+                    <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card col-centered">
+                        <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
+                        <img class="img-responsive" src="images/icecream.jpg" alt="" width="140" height="140">
+                        <div class="caption">
+                            <h4>Chocolate icecream</h4>
+                            <p>25 SEK </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                      <div class="well">
+                          <h3>
+                            Total: <span id="totalPrice" class="label label-default">341.20</span>
+                          <button type="button" class="btn btn-lg btn-default pull-right">Print Full Recipe</button>
+                          </h3>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="final-page" class="container-fluid fill pre-scrollable" style="display: none">
+            <div class="row">
+            <div id="dinnerOverview" class="col-md-12">
+            <div class="well">
+                    <h4 style="display: inline;">
+                        My Dinner<span>4
+                            </span>
+                        <button type="button" class="btn btn-sm btn-default pull-right">Go back and edit dinner </button>
+                    </h4>
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+            <div class="col-12">
+            <table class="table table-responsive">
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="images/toast.jpg" alt="" width="140" height="140">
+                        </td>
+                        <td>
+                            <h1>Lasagna</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </td>
+                        <td>
+                            <h2>Preparation</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="images/toast.jpg" alt="" width="140" height="140">
+                        </td>
+                        <td>
+                            <h1>Lasagna</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </td>
+                        <td>
+                            <h2>Preparation</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
             </div>
         </div>
 </div>
