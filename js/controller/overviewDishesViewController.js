@@ -47,6 +47,7 @@ var OverviewDishesViewController = function(view, model) {
 		}
 
 		model.getFullMenu().forEach(d => this.addToGrid(d, view.overviewCardGrid));
+		view.totalPrice.text(model.getTotalMenuPrice());
 }
 
 var shortDescription = function(text) {

@@ -166,7 +166,7 @@ table.selected-dishes-table tr td:nth-child(3) {
     border: 0;
 }
 
-#totalPrice {
+span.totalPrice {
   background-color: darkorange;
 }
 
