@@ -93,36 +93,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="well number-of-guests-view">
-                          <h4 style="display: inline;">My Dinner <span class="number-of-guests"></span><button type="button" class="btn btn-sm btn-default pull-right go-back-button">Go back and edit dinner</button></h4>
+                          <h4 style="display: inline;">My Dinner <span class="number-of-guests"></span><button type="button" class="btn btn-sm btn-default pull-right go-back-button">◀ Go back and edit dinner</button></h4>
                         </div>
                     </div>
                 </div>
-                <!-- TODO load from model -->
-                <div class="row row-centered">
-                    <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card col-centered">
-                        <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
-                        <img class="img-responsive" src="images/toast.jpg" alt="" width="140" height="140">
-                        <div class="caption">
-                            <h4>French toast</h4>
-                            <p>132.5 SEK </p>
-                        </div>
-                    </div>
-                    <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card col-centered">
-                        <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
-                        <img class="img-responsive" src="images/meatballs.jpg" alt="" width="140" height="140">
-                        <div class="caption">
-                            <h4>Meatballs</h4>
-                            <p>169.3 SEK </p>
-                        </div>
-                    </div>
-                    <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card col-centered">
-                        <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
-                        <img class="img-responsive" src="images/icecream.jpg" alt="" width="140" height="140">
-                        <div class="caption">
-                            <h4>Chocolate icecream</h4>
-                            <p>25 SEK </p>
-                        </div>
-                    </div>
+                <div id="overview-dish-card-container" class="row row-centered">
+                <!-- filled from model -->
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -130,63 +106,33 @@
                         <!-- TODO add to navigation -->
                           <h3>
                             Total: <span id="totalPrice" class="label label-default">341.20</span>
-                          <button type="button" class="btn btn-lg btn-default pull-right">Print Full Recipe</button>
+                          <button id="print-button" type="button" class="btn btn-lg btn-default pull-right">Print Full Recipe</button>
                           </h3>
                       </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="final-page" class="container-fluid fill pre-scrollable" style="display: none">
+        <div id="print-page" style="display: none">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-12">
+                      <div class="well number-of-guests-view">
+                        <h4 style="display: inline;">My Dinner <span class="number-of-guests"></span><button type="button" class="btn btn-sm btn-default pull-right go-back-button">◀ Go back and edit dinner</button></h4>
+                      </div>
+                  </div>
+              </div>
             <div class="row">
-            <div id="dinnerOverview" class="col-md-12">
-            <div class="well">
-                    <h4 style="display: inline;">
-                        My Dinner<span>4
-                            </span>
-                        <button type="button" class="btn btn-sm btn-default pull-right">Go back and edit dinner </button>
-                    </h4>
-                </div>
-                </div>
-            </div>
-
-            <div class="row">
-            <div class="col-12">
-            <table class="table table-responsive">
-                <tbody>
-                    <tr>
-                        <td>
-                            <img src="images/toast.jpg" alt="" width="140" height="140">
-                        </td>
-                        <td>
-                            <h1>Lasagna</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </td>
-                        <td>
-                            <h2>Preparation</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="images/toast.jpg" alt="" width="140" height="140">
-                        </td>
-                        <td>
-                            <h1>Lasagna</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </td>
-                        <td>
-                            <h2>Preparation</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
+              <div class="col-12">
+              <table class="table table-responsive selected-dishes-table">
+                  <tbody>
+                    <!-- Loaded from the model -->
+                  </tbody>
+              </table>
+              </div>
             </div>
         </div>
+      </div>
 </div>
 <!-- Other stuff -->
 <!-- jQuery -->
@@ -195,13 +141,20 @@
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <!-- The application JavaScript code -->
 <script src="js/app.js"></script>
+
 <script src="js/model/dinnerModel.js"></script>
+
 <script src="js/view/numberOfGuestsView.js"></script>
 <script src="js/view/navigationView.js"></script>
 <script src="js/view/selectedDishesView.js"></script>
 <script src="js/view/allDishesView.js"></script>
+<script src="js/view/overviewDishesView.js"></script>
+<script src="js/view/printDishesView.js"></script>
+
 <script src="js/controller/numberOfGuestsViewController.js"></script>
 <script src="js/controller/navigationViewController.js"></script>
 <script src="js/controller/selectedDishesViewController.js"></script>
 <script src="js/controller/allDishesViewController.js"></script>
+<script src="js/controller/overviewDishesViewController.js"></script>
+<script src="js/controller/printDishesViewController.js"></script>
 </body></html>

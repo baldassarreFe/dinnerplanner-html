@@ -16,7 +16,12 @@ var NavigationViewController = function(view, model ) {
 
 	view.goBackButton.click(function() {
 		view.overviewPage.hide();
-		view.finalPage.hide();
+		view.printPage.hide();
 		view.mainPage.show();
+	});
+
+	view.printButton.click(function() {
+		view.overviewPage.hide();
+		view.printPage.show();
 	});
 }

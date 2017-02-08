@@ -70,6 +70,26 @@ table.ingredients-list tr td:nth-child(2):first-letter {
     text-transform:capitalize;
 }
 
+table.selected-dishes-table {
+  background: snow;
+  width: 100%;
+}
+
+table.selected-dishes-table tr:nth-child(odd) { background: snow; }
+table.selected-dishes-table tr:nth-child(even) { background: white; }
+
+table.selected-dishes-table tr td:nth-child(1) {
+  width: 20%;
+}
+
+table.selected-dishes-table tr td:nth-child(2) {
+  width: 40%;
+}
+
+table.selected-dishes-table tr td:nth-child(3) {
+  width: 40%;
+}
+
 .fill {
     position: relative;
     width: 100%;
@@ -200,7 +220,7 @@ h4 > button, h3 > button {
   padding-top: 15px;
 }
 
-#overview-page .well {
+#overview-page .well, #print-page .well {
   width: 100%;
   background: khaki;
 }
