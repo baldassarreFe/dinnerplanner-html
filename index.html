@@ -49,7 +49,7 @@
                     			</div>
                         </div>
                     </div>
-                    <div id="selectedDishesView" class="well">
+                    <div id="sidePaneView" class="well">
                         <h4>My Menu</h4>
                         <hr/>
                         <ul id="selectedDishesList" class="list-unstyled"></ul>
@@ -59,7 +59,7 @@
                     </div>
                     <button type="button" class="btn btn-default center-block">Confirm Dinner</button>
                 </div>
-                <div class="col-md-10">
+                <div id="allDishes" class="col-md-10">
                     <div id="searchBar" class="row form-inline mb-2">
                         <h4>Select dish</h4>
                         <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="search" id="searchInput" placeholder="Enter keywords">
@@ -71,7 +71,7 @@
                             <option>Dessert</option>
                         </select>
                     </div>
-                    <div id="allDishes" class="row full-height-pre-scrollable ">
+                    <div class="row full-height-pre-scrollable ">
                         <div id="starterDishes" class="row">
                             <h3 class="col-lg-12">Starters</h3>
                             <!--Dish cards appended here-->
@@ -144,16 +144,14 @@
 
 <script src="js/model/dinnerModel.js"></script>
 
-<script src="js/view/numberOfGuestsView.js"></script>
 <script src="js/view/navigationView.js"></script>
-<script src="js/view/selectedDishesView.js"></script>
+<script src="js/view/sidePaneView.js"></script>
 <script src="js/view/allDishesView.js"></script>
 <script src="js/view/overviewDishesView.js"></script>
 <script src="js/view/printDishesView.js"></script>
 
-<script src="js/controller/numberOfGuestsViewController.js"></script>
 <script src="js/controller/navigationViewController.js"></script>
-<script src="js/controller/selectedDishesViewController.js"></script>
+<script src="js/controller/sidePaneViewController.js"></script>
 <script src="js/controller/allDishesViewController.js"></script>
 <script src="js/controller/overviewDishesViewController.js"></script>
 <script src="js/controller/printDishesViewController.js"></script>

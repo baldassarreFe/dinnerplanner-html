@@ -1,4 +1,4 @@
-var SelectedDishesViewController = function(view, model) {
+var SidePaneViewController = function(view, model) {
 
 	this.addToList = function(dish){
 		view.list.append(
