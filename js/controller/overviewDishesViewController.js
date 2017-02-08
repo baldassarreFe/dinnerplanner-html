@@ -1,7 +1,7 @@
 var OverviewDishesViewController = function(view, model) {
 	 var updateSelectedGrid = function(sel, num) {
 		 view.overviewCardGrid.empty();
-		  model.getFullMenu().forEach(d => {
+		  sel.forEach(d => {
 			var cardHtml = `
 				<div id="dish-${d.id}" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card col-centered">
 					<img class="img-responsive" src="${'images/' + d.image}" alt="" width="140" height="140">
@@ -73,10 +73,10 @@ var OverviewDishesViewController = function(view, model) {
 }
 
 var shortDescription = function(text) {
-	if(text.length<60){
+	if(text.length<49){
 		return text
 	} else {
-		return text.substring(0, 57) + '...'
+		return text.substring(0, 46) + '...'
 	}
 }
 

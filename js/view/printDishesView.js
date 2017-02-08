@@ -1,3 +1,4 @@
 var PrintDishesView = function (container) {
-	this.printDishTable = container.find('table')
+	this.numberOfGuests = container.find('.number-of-guests');
+	this.selectedDishTable = container.find('table')
 }

@@ -75,19 +75,34 @@ table.selected-dishes-table {
   width: 100%;
 }
 
-table.selected-dishes-table tr:nth-child(odd) { background: snow; }
+table.selected-dishes-table td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+table.selected-dishes-table tr:nth-child(odd) { background: snow;}
 table.selected-dishes-table tr:nth-child(even) { background: white; }
 
 table.selected-dishes-table tr td:nth-child(1) {
   width: 20%;
+  padding-left: 10px;
 }
 
 table.selected-dishes-table tr td:nth-child(2) {
   width: 40%;
+  vertical-align: top;
+  text-align: justify;
+  padding-left: 20px;
 }
 
 table.selected-dishes-table tr td:nth-child(3) {
   width: 40%;
+  padding-left: 20px;
+}
+
+.badge.remove-button {
+  cursor: pointer;
+  background-color:red;
 }
 
 .fill {
@@ -171,7 +186,7 @@ span.totalPrice {
 }
 
 .dish-card {
-  min-height: 370px;
+  min-height: 340px;
   max-width: 200px;
   background-color: snow;
   border: 0;

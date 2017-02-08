@@ -12,7 +12,7 @@ var SidePaneViewController = function(view, model) {
 				`
 				<li>
 					${d.name}
-					<span class="badge pull-right remove-button" style='background-color:red'>&#10005;</span>
+					<span class="badge pull-right remove-button">&#10005;</span>
 					<span class="badge pull-right">${d.ingredients.map(i => i.price).reduce((a,b)=>a+b, 0) * num}</span>
 				</li>
 				`

@@ -1,12 +1,14 @@
 var PrintDishesViewController = function(view, model) {
-	 this.addToGrid = function(dish, grid) {
-			var cardHtml = `
+	var updateSelectedTable = function(sel, num) {
+ 		 view.selectedDishTable.empty();
+ 		  sel.forEach(dish => {
+ 			var tableRow = `
 			<tr>
 					<td>
 							<img src="${'images/' + dish.image}" alt="" width="140" height="140">
 					</td>
 					<td>
-							<h1>${dish.name}</h1>
+							<h2>${dish.name}</h2>
 							<div>${dish.description}</div>
 					</td>
 					<td>
@@ -16,9 +18,23 @@ var PrintDishesViewController = function(view, model) {
 							</ul>
 					</td>
 			</tr>
-			`
-			grid.append(cardHtml);
+ 			`
+ 			view.selectedDishTable.append(tableRow);
+ 		});
+ 		}
+
+		var updateNumberOfGuests = function(num) {
+			view.numberOfGuests.val(model.getNumberOfGuests());
+			view.numberOfGuests.text(model.getNumberOfGuests());
 		}
 
-		model.getFullMenu().forEach(d => this.addToGrid(d, view.printDishTable));
+		model.addListener('numberOfGuestsChange', n => {
+			updateNumberOfGuests(n);
+			updateSelectedTable(model.getFullMenu(), n);
+		});
+
+		model.addListener('selectedDishesChange', sel => {
+			updateNumberOfGuests(model.getNumberOfGuests());
+			updateSelectedTable(sel, model.getNumberOfGuests());
+		});
 }
