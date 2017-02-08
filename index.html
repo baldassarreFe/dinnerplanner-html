@@ -57,10 +57,10 @@
                         <h3>Total:<span id="totalPrice" class="label label-default pull-right"></span>
                         </h3>
                     </div>
-                    <button type="button" class="btn btn-default">Confirm Dinner</button>
+                    <button type="button" class="btn btn-default center-block">Confirm Dinner</button>
                 </div>
                 <div class="col-md-10">
-                    <div id="searchBar" class="form-inline mb-2">
+                    <div id="searchBar" class="row form-inline mb-2">
                         <h4>Select dish</h4>
                         <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="search" id="searchInput" placeholder="Enter keywords">
                         <button id="searchButton" class="btn btn-primary mb-2 mr-sm-2 mb-sm-0">Submit</button>
@@ -71,7 +71,7 @@
                             <option>Dessert</option>
                         </select>
                     </div>
-                    <div id="allDishes" class="container-fluid pre-scrollable">
+                    <div id="allDishes" class="row full-height-pre-scrollable ">
                         <div id="starterDishes" class="row">
                             <h3 class="col-lg-12">Starters</h3>
                             <!--Dish cards appended here-->
@@ -81,7 +81,7 @@
                             <!--Dish cards appended here-->
                         </div>
                         <div id="dessertDishes" class="row">
-                            <h3 class="page-header" class="col-lg-12">Dessert</h3>
+                            <h3 class="col-lg-12">Dessert</h3>
                             <!--Dish cards appended here-->
                         </div>
                     </div>
@@ -97,6 +97,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- TODO load from model -->
                 <div class="row row-centered">
                     <div id="dish-1" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card col-centered">
                         <!-- <ul id="selectedDishesList" class="list-unstyled"> -->
@@ -126,6 +127,7 @@
                 <div class="row">
                     <div class="col-12">
                       <div class="well">
+                        <!-- TODO add to navigation -->
                           <h3>
                             Total: <span id="totalPrice" class="label label-default">341.20</span>
                           <button type="button" class="btn btn-lg btn-default pull-right">Print Full Recipe</button>
