@@ -1,24 +1,43 @@
 var SidePaneViewController = function(view, model) {
 
-	this.addToList = function(dish){
-		view.list.append(
-			`
-			<li>
-				${dish.name}
-				<span class="badge pull-right" style='background-color:red'>&#10005;</span>
-				<span class="badge pull-right">${dish.ingredients.map(i => i.price).reduce((a,b)=>a+b) * model.getNumberOfGuests()}</span>
-			</li>
-			`
-		)
+	var updateNumberOfGuests = function(num) {
+		view.numberOfGuests.val(model.getNumberOfGuests());
+		view.numberOfGuests.text(model.getNumberOfGuests());
 	}
 
-	model.getFullMenu().forEach(d => this.addToList(d));
+	var updateSelectedList = function(sel, num) {
+		view.list.empty();
+		sel.forEach(d => {
+				var listItemHtml =
+				`
+				<li>
+					${d.name}
+					<span class="badge pull-right remove-button" style='background-color:red'>&#10005;</span>
+					<span class="badge pull-right">${d.ingredients.map(i => i.price).reduce((a,b)=>a+b, 0) * num}</span>
+				</li>
+				`
+				var listItem = $(listItemHtml);
+				listItem.find('.remove-button').click(() => model.removeDishFromMenu(d.id));
+				view.list.append(listItem);
+			}
+		);
+	}
 
-	view.totalPrice.text(model.getTotalMenuPrice());
+	var updateTotalPrice = function(tot) {
+		view.totalPrice.text(tot);
+	}
 
-	// REMOVE
-	view.numberOfGuests.val(model.getNumberOfGuests());
-	view.numberOfGuests.text(model.getNumberOfGuests());
+	model.addListener('numberOfGuestsChange', n => {
+		updateNumberOfGuests(n);
+		updateSelectedList(model.getFullMenu(), n);
+		updateTotalPrice(model.getTotalMenuPrice());
+	});
+
+	model.addListener('selectedDishesChange', sel => {
+		updateNumberOfGuests(model.getNumberOfGuests());
+		updateSelectedList(sel, model.getNumberOfGuests());
+		updateTotalPrice(model.getTotalMenuPrice());
+	});
 
 	view.plusButton.click(function(){
 		model.setNumberOfGuests(model.getNumberOfGuests() + 1);
@@ -28,9 +47,5 @@ var SidePaneViewController = function(view, model) {
 		model.setNumberOfGuests(model.getNumberOfGuests() - 1);
 	});
 
-	if (model.getFullMenu().length==0) {
-		view.confirmButton.addClass('disabled');
-	} else {
-		view.confirmButton.removeClass('disabled');
-	}
+	updateNumberOfGuests(model.getNumberOfGuests());
 }

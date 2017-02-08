@@ -7,7 +7,7 @@ var NavigationView = function (container) {
 	this.printPage = container.find("#print-page");
 
 	// Navigation Buttons
-	this.confirmButton = container.find("#dinnerOverview > button");
+	this.confirmButton = container.find("#sidePaneView > button");
 	this.goBackButton = container.find(".go-back-button");
 	this.printButton = container.find("#print-button");
 }

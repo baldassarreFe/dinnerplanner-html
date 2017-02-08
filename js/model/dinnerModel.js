@@ -3,10 +3,28 @@ var DinnerModel = function() {
 
     var numberOfGuests = 0;
     var selected = [];
+    var obserservers = {
+      'numberOfGuestsChange' : [],
+      'selectedDishesChange' : []
+    };
+
+    this.addListener = function(eventType, callback) {
+      obserservers[eventType].push(callback);
+    }
+
+    var notifyNumberOfGuestsChange = function() {
+      obserservers['numberOfGuestsChange'].forEach(cb => cb(numberOfGuests));
+    }
+
+    var notifySelectedDishesChange = function() {
+      obserservers['selectedDishesChange'].forEach(cb => cb(selected));
+    }
 
     this.setNumberOfGuests = function(num) {
-        if (num >= 0)
-            numberOfGuests = num;
+        if (num >= 0) {
+          numberOfGuests = num;
+          notifyNumberOfGuestsChange();
+        }
     }
 
     // Return the number of guests
@@ -30,7 +48,7 @@ var DinnerModel = function() {
     this.getAllIngredients = function() {
         var ingredientsDishByDish = selected
             .map(dish=>dish.ingredients)
-            .reduce((arr1, arr2) => arr1.concat(arr2));
+            .reduce((arr1, arr2) => arr1.concat(arr2), []);
 
         var ingredientsGrouped = []
 
@@ -54,7 +72,10 @@ var DinnerModel = function() {
 
     //Returns the total price of the menu (all the ingredients multiplied by number of guests).
     this.getTotalMenuPrice = function() {
-        return this.getAllIngredients().map(i => i.price).reduce((p1,p2) => p1+p2);
+      if (selected.length==0)
+        return 0;
+      else
+        return this.getAllIngredients().map(i => i.price).reduce((p1,p2) => p1+p2, 0);
     }
 
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
@@ -64,6 +85,7 @@ var DinnerModel = function() {
         if (newDish) {
             selected = selected.filter(dish => dish.type!=newDish.type);
             selected.push(newDish);
+            notifySelectedDishesChange();
         }
     }
 
@@ -72,11 +94,13 @@ var DinnerModel = function() {
         var toRemove = this.getDish(id);
         if (toRemove) {
             selected = selected.filter(dish => dish.name!=toRemove.name);
+            notifySelectedDishesChange();
         }
     }
 
     this.removeAllDishes = function() {
         selected = [];
+        notifySelectedDishesChange();
     }
 
     //function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")

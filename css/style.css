@@ -137,7 +137,7 @@ table.selected-dishes-table tr td:nth-child(3) {
     list-style-type: none;
 }
 
-#dinnerOverview {
+#sidePaneView {
     padding-left: 0;
     padding-right: 0;
 }
@@ -156,7 +156,7 @@ table.selected-dishes-table tr td:nth-child(3) {
     background-color: khaki;
 }
 
-#dinnerOverview .well {
+#sidePaneView .well {
   padding: 5px;
   margin-bottom: 0;
   background-color: khaki;
@@ -171,7 +171,7 @@ span.totalPrice {
 }
 
 .dish-card {
-  min-height: 330px;
+  min-height: 370px;
   max-width: 200px;
   background-color: snow;
   border: 0;
@@ -237,6 +237,6 @@ h4 > button, h3 > button {
     padding: 8px;
 }
 
-#final-page #dinnerOverview {
+#final-page #sidePaneView {
 	background-color: khaki;
 }

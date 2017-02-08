@@ -7,7 +7,7 @@ var AllDishesViewController = function(view, model) {
 							<h4>${dish.name}</h4>
 							<p>${shortDescription(dish.description)}</p>
 							<p class="fade-buttons">
-									<button type="button" class="btn btn-primary">Add</button>
+									<button type="button" class="btn btn-primary add-button">Add</button>
 									<!-- Button trigger modal -->
 									<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal-${dish.id}">Recipe</button>
 							</p>
@@ -37,7 +37,7 @@ var AllDishesViewController = function(view, model) {
 													</div>
 													<div class="modal-footer">
 															<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-															<button type="button" class="btn btn-primary">Add</button>
+															<button type="button" class="btn btn-primary add-button" data-dismiss="modal">Add</button>
 													</div>
 											</div>
 									</div>
@@ -45,7 +45,9 @@ var AllDishesViewController = function(view, model) {
 					</div>
 			</div>
 			`
-			grid.append(cardHtml);
+			var card = $(cardHtml);
+			card.find('.add-button').click(() => model.addDishToMenu(dish.id));
+			grid.append(card);
 		}
 
 		model.getAllDishes('starter').forEach(d => this.addToGrid(d, view.starterGrid));
