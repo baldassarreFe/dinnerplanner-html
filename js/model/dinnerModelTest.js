@@ -1,14 +1,28 @@
-var dm = new DinnerModel();
+var model = new DinnerModel()
 
-dm.getNumberOfGuests();
+model.getNumberOfGuests()
 
-dm.addDishToMenu(101);
-dm.addDishToMenu(203);
+model.addDishToMenu(101)
+model.addDishToMenu(203)
 
-dm.getAllIngredients();
-dm.getTotalMenuPrice();
+model.getAllIngredients()
+model.getTotalMenuPrice()
 
-dm.setNumberOfGuests(2); 
+model.setNumberOfGuests(2)
 
-dm.getAllIngredients();
-dm.getTotalMenuPrice();
+model.getAllIngredients()
+model.getTotalMenuPrice()
+
+
+model.search(null, null).length == 12
+model.search(null, '').length == 12
+model.search('', null).length == 12
+model.search('','').length == 12
+
+model.search('eggs').length == 1
+model.search('eggs','starter').length == 1
+model.search(null, 'main dish').length == 5
+model.search(['eggs','sugar']).length == 1
+model.search(['eggs','sugar'], 'starter').length == 1
+model.search(['eggs','ice'], 'starter').length == 0
+model.search(['eggs','sugar'], 'main dish').length == 0

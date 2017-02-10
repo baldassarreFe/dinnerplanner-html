@@ -14,7 +14,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <img src = "favicon.ico" alt = "Homelette">
+                    <img src="favicon.ico" alt="Homelette">
                     <h1 style="display: inline-block">HOMELETTE</h1>
                     <p style="display: inline-block">From the best chefs in the world directly into your kitchen</p>
                 </div>
@@ -36,40 +36,59 @@
                 <div id="sidePaneView" class="col-md-2">
                     <div class="well">
                         <h4>My Dinner</h4>
-                        <hr>
                         <div class="number-of-guests-view">
                             <div class="input-group number-spinner">
-                    				<span class="input-group-btn">
-                    					<button id="minusGuest" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
-                    				</span>
-                    				<input type="text" class="form-control text-center readonly number-of-guests">
-                    				<span class="input-group-btn">
-                    					<button id="plusGuest" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
-                    				</span>
-                    			</div>
+                                <span class="input-group-btn">
+                                    <button id="minusGuest" class="btn btn-default" data-dir="dwn">
+                                        <span class="glyphicon glyphicon-minus"></span>
+                                    </button>
+                                </span>
+                                <input type="text" class="form-control text-center readonly number-of-guests">
+                                <span class="input-group-btn">
+                                    <button id="plusGuest" class="btn btn-default" data-dir="up">
+                                        <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
+                        <hr/>
                     </div>
                     <div class="well">
                         <h4>My Menu</h4>
                         <hr/>
-                        <ul id="selectedDishesList" class="list-unstyled"></ul>
-                        <hr/>
-                        <h3>Total:<span class="label label-default pull-right totalPrice"></span>
+                        <div id="selectedDishesList"></div>
+                        <h3>
+                            Total:<span class="label label-default pull-right totalPrice"></span>
                         </h3>
                     </div>
                     <button type="button" class="btn btn-default center-block">Confirm Dinner</button>
                 </div>
                 <div id="allDishes" class="col-md-10">
-                    <div id="searchBar" class="row form-inline mb-2">
+                    <div class="row search-bar">
                         <h4>Select dish</h4>
-                        <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="search" id="searchInput" placeholder="Enter keywords">
-                        <button id="searchButton" class="btn btn-primary mb-2 mr-sm-2 mb-sm-0">Submit</button>
-                        <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="dishTypeFilter">
-                            <option>All</option>
-                            <option>Starters</option>
-                            <option>Main</option>
-                            <option>Dessert</option>
-                        </select>
+                        <div class=col-sm-6>
+                            <div class=input-group>
+                                <input class=form-control id="searchKeywords" placeholder="Enter keywords">
+                                <div class=input-group-btn>
+                                    <button id="searchButton" type="button" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="dishTypeFilter">
+                                <option value="" selected="">All</option>
+                                <option value="starter">Starters</option>
+                                <option value="main dish">Main</option>
+                                <option value="dessert">Dessert</option>
+                            </select>
+                        </div>
+                        <div class=col-sm-2>
+                            <button id="clearSearchButton" type="button" class="btn btn-default" style="display:none;">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </div>
                     </div>
                     <div class="row full-height-pre-scrollable ">
                         <div id="starterDishes" class="row">
@@ -84,6 +103,12 @@
                             <h3 class="col-lg-12">Dessert</h3>
                             <!--Dish cards appended here-->
                         </div>
+                        <div id="searchResults" class="row" style="display:none;">
+                            <!--Dish cards appended here-->
+                        </div>
+                        <div id="dishModals">
+                            <!--Dish modals appended here-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,7 +118,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="well number-of-guests-view">
-                          <h4 style="display: inline;">My Dinner <span class="number-of-guests"></span><button type="button" class="btn btn-sm btn-default pull-right go-back-button">◀ Go back and edit dinner</button></h4>
+                            <h4 style="display: inline;">
+                                My Dinner <span class="number-of-guests"></span>
+                                <button type="button" class="btn btn-sm btn-default pull-right go-back-button">◀ Go back and edit dinner</button>
+                            </h4>
                         </div>
                     </div>
                 </div>
@@ -102,37 +130,40 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                      <div class="well">
-                        <!-- TODO add to navigation -->
-                          <h3>
-                            Total: <span class="label label-default totalPrice"></span>
-                          <button id="print-button" type="button" class="btn btn-lg btn-default pull-right">Print Full Recipe</button>
-                          </h3>
-                      </div>
+                        <div class="well">
+                            <!-- TODO add to navigation -->
+                            <h3>
+                                Total: <span class="label label-default totalPrice"></span>
+                                <button id="print-button" type="button" class="btn btn-lg btn-default pull-right">Print Full Recipe</button>
+                            </h3>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div id="print-page" style="display: none">
-          <div class="container-fluid">
-              <div class="row">
-                  <div class="col-12">
-                      <div class="well number-of-guests-view">
-                        <h4 style="display: inline;">My Dinner <span class="number-of-guests"></span><button type="button" class="btn btn-sm btn-default pull-right go-back-button">◀ Go back and edit dinner</button></h4>
-                      </div>
-                  </div>
-              </div>
-            <div class="row">
-              <div class="col-12">
-              <table class="table table-responsive selected-dishes-table">
-                  <tbody>
-                    <!-- Loaded from the model -->
-                  </tbody>
-              </table>
-              </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="well number-of-guests-view">
+                            <h4 style="display: inline;">
+                                My Dinner <span class="number-of-guests"></span>
+                                <button type="button" class="btn btn-sm btn-default pull-right go-back-button">◀ Go back and edit dinner</button>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 full-height-pre-scrollable">
+                        <table class="table table-responsive selected-dishes-table">
+                            <tbody>
+                            <!-- Loaded from the model -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
 </div>
 <!-- Other stuff -->
 <!-- jQuery -->
@@ -141,15 +172,12 @@
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <!-- The application JavaScript code -->
 <script src="js/app.js"></script>
-
 <script src="js/model/dinnerModel.js"></script>
-
 <script src="js/view/navigationView.js"></script>
 <script src="js/view/sidePaneView.js"></script>
 <script src="js/view/allDishesView.js"></script>
 <script src="js/view/overviewDishesView.js"></script>
 <script src="js/view/printDishesView.js"></script>
-
 <script src="js/controller/navigationViewController.js"></script>
 <script src="js/controller/sidePaneViewController.js"></script>
 <script src="js/controller/allDishesViewController.js"></script>

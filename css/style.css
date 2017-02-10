@@ -8,9 +8,8 @@ html, body {
     overflow: hidden;
 }
 
-#searchBar {
+.search-bar {
   padding-bottom: 10px;
-  background-color: khaki;
 }
 
 #main-page {
@@ -18,6 +17,8 @@ html, body {
     padding-right: 3px;
     overflow: auto;
 }
+
+
 
 .row-centered {
     text-align:center;
@@ -175,6 +176,7 @@ table.selected-dishes-table tr td:nth-child(3) {
   padding: 5px;
   margin-bottom: 0;
   background-color: khaki;
+  box-shadow: none;
 }
 
 .well {
@@ -215,7 +217,7 @@ span.totalPrice {
 }
 
 .total-card {
-  min-height: 330px;
+  min-height: 340px;
   max-width: 200px;
   background-color: white;
   border: 0

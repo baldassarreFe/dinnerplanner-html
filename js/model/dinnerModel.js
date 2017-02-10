@@ -124,6 +124,28 @@ var DinnerModel = function() {
         });
     }
 
+    // Retrieves the dishes that match both the type and any of the keywords
+    // specified as parameters. For both parameters, '' or null matches every dish.
+    //
+    // search('',null) -> all dishes
+    // search(null, 'starter') -> all starters
+    // search('eggs', '') -> all dishes having 'eggs' in either the name or ingredients list
+    // search(['eggs','cream'], '') -> all dishes having 'eggs' or 'cream' in either the name or ingredients list
+    // search('eggs', 'starter') -> 'starter' as type AND 'eggs' as a keyword
+    // search(['eggs', 'cream'], 'starter') -> 'starter' as type AND ('eggs' OR 'cream' as a keywords)
+    this.search = function(keywords, type) {
+      if (keywords && !Array.isArray(keywords))
+        keywords = [keywords];
+      return dishes.filter(d => {
+          var checkType = !type || d.type == type;
+          var checkKeyword = !keywords || keywords.some(kw => d.name.indexOf(kw) != -1) ||
+            d.ingredients.map(i => i.name).some(name => keywords.some(kw => name.indexOf(kw) != -1))
+
+          return checkType && checkKeyword;
+        }
+      )
+    }
+
     //function that returns a dish of specific ID
     this.getDish = function(id) {
         for (key in dishes) {
@@ -197,7 +219,7 @@ var DinnerModel = function() {
         }]
     }, {
         'id': 3,
-        'name': 'Baked Brie with Peaches',
+        'name': 'Brie with Peaches',
         'type': 'starter',
         'image': 'bakedbrie.jpg',
         'description': "Here is how you make it... Lore ipsum...",

@@ -10,11 +10,16 @@ var SidePaneViewController = function(view, model) {
 		sel.forEach(d => {
 				var listItemHtml =
 				`
-				<li>
+				<div class="row">
+					<div class="col-sm-7">
 					${d.name}
+					</div>
+					<div class="col-sm-5">
 					<span class="badge pull-right remove-button">&#10005;</span>
 					<span class="badge pull-right">${d.ingredients.map(i => i.price).reduce((a,b)=>a+b, 0) * num}</span>
-				</li>
+					</div>
+				</div>
+				<hr>
 				`
 				var listItem = $(listItemHtml);
 				listItem.find('.remove-button').click(() => model.removeDishFromMenu(d.id));

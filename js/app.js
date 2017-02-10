@@ -17,5 +17,5 @@ $(function() {
     var navigationViewController = new NavigationViewController(navigationView,model);
 
     // REMOVE
-    // navigationView.createNewDinnerButton.trigger('click');
+    // navigationView.createNewDinnerButton.click();
 });
