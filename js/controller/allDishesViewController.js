@@ -80,7 +80,7 @@ var AllDishesViewController = function(view, model) {
 		}
 
 		view.searchKeywords.keyup(function (e) {
-			if (e.keyCode == 13)
+			if (e.keyCode == 13 || view.searchKeywords.val()==0)
 				update()
 		})
 		view.searchButton.click(update)
