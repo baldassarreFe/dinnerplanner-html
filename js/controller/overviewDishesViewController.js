@@ -4,9 +4,9 @@ var OverviewDishesViewController = function(view, model) {
 		  sel.forEach(d => {
 			var cardHtml = `
 				<div id="dish-${d.id}" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card col-centered">
-					<img class="img-responsive" src="${'images/' + d.image}" alt="" width="140" height="140">
+					<img class="img-responsive" src="${d.image}" alt="" width="140" height="140">
 					<div class="caption">
-							<h4>${d.name}</h4>
+							<p><strong>${d.name}</strong></p>
 							<p>${shortDescription(d.description)}</p>
 							<p>Tot for ${num}: <span class="badge pull-right">${d.ingredients.map(i => i.price).reduce((a,b)=>a+b, 0) * num}</span></p>
 							<p class="fade-buttons">
@@ -24,7 +24,7 @@ var OverviewDishesViewController = function(view, model) {
 															<h4 class="modal-title" id="myModalLabel">${d.name} recipe</h4>
 													</div>
 													<div class="modal-body">
-														<img class="img-responsive" src="${'images/' + d.image}" alt="">
+														<img class="img-responsive" src="${d.image}" alt="">
 														<h4>Preparation</h4>
 														<p>${d.description}</p>
 														<h4>Ingredients</h4>
@@ -34,7 +34,7 @@ var OverviewDishesViewController = function(view, model) {
 															  <th>Ingredient</th>
 															  <th>Price</th>
 															</tr>
-															${d.ingredients.map(i => tableRow(i))}
+															${d.ingredients.map(i => tableRow(i)).join('')}
 														</table>
 													</div>
 													<div class="modal-footer">
@@ -85,7 +85,7 @@ var tableRow = function(ingr) {
 	<tr>
 	<td>${ingr.quantity} ${ingr.unit}</td>
 	<td>${ingr.name}</td>
-	<td>SEK ${ingr.price}</td>
+	<td>SEK ${ingr.price.toFixed(2)}</td>
 	</tr>
 	`
 }

@@ -5,7 +5,7 @@ var PrintDishesViewController = function(view, model) {
  			var tableRow = `
 			<tr>
 					<td>
-							<img src="${'images/' + dish.image}" alt="" width="140" height="140">
+							<img src="${dish.image}" alt="" width="140" height="140">
 					</td>
 					<td>
 							<h2>${dish.name}</h2>

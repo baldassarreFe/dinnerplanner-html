@@ -2,9 +2,9 @@ var AllDishesViewController = function(view, model) {
 	 var addToGrid = function(dish, grid, modal) {
 			var cardHtml = `
 				<div id="dish-${dish.id}" class="col-lg-3 col-md-4 col-xs-6 thumbnail dish-card">
-					<img class="img-responsive" src="${'images/' + dish.image}" alt="" width="140" height="140">
+					<img class="img-responsive" src="${dish.image}" alt="" width="140" height="140">
 					<div class="caption">
-							<h4>${dish.name}</h4>
+							<p><strong>${dish.name}</strong></p>
 							<p>${shortDescription(dish.description)}</p>
 							<p class="fade-buttons">
 									<button type="button" class="btn btn-primary add-button">Add</button>
@@ -32,18 +32,24 @@ var AllDishesViewController = function(view, model) {
 												<h4 class="modal-title" id="myModalLabel">${dish.name} recipe</h4>
 										</div>
 										<div class="modal-body">
-											<img class="img-responsive" src="${'images/' + dish.image}" alt="">
-											<h4>Preparation</h4>
-											<p>${dish.description}</p>
-											<h4>Ingredients</h4>
-											<table class="ingredients-list">
-												<tr>
-													<th>Quantity</th>
-													<th>Ingredient</th>
-													<th>Price</th>
-												</tr>
-												${dish.ingredients.map(i => tableRow(i))}
-											</table>
+											<div class="row">
+												<div class="col-xs-12 col-md-4">
+													<img class="img-responsive" src="${dish.image}" alt="">
+												</div>
+												<div class="col-xs-12 col-md-6">
+													<h4>Preparation</h4>
+													<p>${dish.description}</p>
+													<h4>Ingredients</h4>
+													<table class="ingredients-list">
+														<tr>
+															<th>Quantity</th>
+															<th>Ingredient</th>
+															<th>Price</th>
+														</tr>
+														${dish.ingredients.map(i => tableRow(i)).join('')}
+													</table>
+												</div>
+											</div>
 										</div>
 										<div class="modal-footer">
 												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -67,9 +73,19 @@ var AllDishesViewController = function(view, model) {
 				view.dessertGrid.hide();
 				view.clearSearchButton.show();
 				view.searchResultsGrid.empty();
-				view.searchResultsGrid.append($('<h3 class="col-lg-12">Results</h3>'));
-				model.search(keyword, type).forEach(d => addToGrid(d, view.searchResultsGrid));
+				header = $(
+					'<div class="col-lg-12">'+
+					'<h3>Results</h3>'+
+					'<span class="glyphicon loading glyphicon-refresh"></span>'+
+					'</div>'
+				)
+				view.searchResultsGrid.append(header);
 				view.searchResultsGrid.show();
+				model.makeSearch(keyword, type, d => {
+					addToGrid(d, view.searchResultsGrid)
+					header.find('.loading').hide()
+				}, console.log)
+				// model.search(keyword, type).forEach(d => addToGrid(d, view.searchResultsGrid));
 			} else {
 				view.clearSearchButton.hide();
 				view.searchResultsGrid.hide();
@@ -83,19 +99,47 @@ var AllDishesViewController = function(view, model) {
 			if (e.keyCode == 13 || view.searchKeywords.val()==0)
 				update()
 		})
-		view.searchButton.click(update)
-		view.searchFilter.change(update)
 		view.clearSearchButton.click(function () {
 				view.searchKeywords.val('');
 				view.searchFilter.val('');
 				update();
 		})
+		view.searchButton.click(update)
+		view.searchFilter.change(update)
 
-		// Populate menu sections (do once, will never change)
-		model.getAllDishes('starter').forEach(d => addToGrid(d, view.starterGrid));
-		model.getAllDishes('main dish').forEach(d => addToGrid(d, view.mainGrid));
-		model.getAllDishes('dessert').forEach(d => addToGrid(d, view.dessertGrid));
-		model.getAllDishes().forEach(d => createModal(d, view.dishModals))
+		view.moreStartersButton.click(function(e) {
+			$(e.target).addClass('loading disabled')
+			model.getMoreByType('appetizer',
+				d => {
+					  addToGrid(d, view.starterGrid)
+					  createModal(d, view.dishModals)
+						$(e.target).removeClass('loading disabled')
+				}, alert, 3)
+		})
+
+		view.moreMainsButton.click(function(e) {
+			$(e.target).addClass('loading disabled')
+			model.getMoreByType('main course',
+				d => {
+					  addToGrid(d, view.mainGrid)
+					  createModal(d, view.dishModals)
+						$(e.target).removeClass('loading disabled')
+				}, alert, 3)
+		})
+
+		view.moreDessertsButton.click(function(e) {
+			$(e.target).addClass('loading disabled')
+			model.getMoreByType('dessert',
+				d => {
+					  addToGrid(d, view.dessertGrid)
+					  createModal(d, view.dishModals)
+						$(e.target).removeClass('loading disabled')
+				}, alert, 3)
+		})
+
+		view.moreStartersButton.trigger('click')
+		view.moreMainsButton.trigger('click')
+		view.moreDessertsButton.trigger('click')
 }
 
 var shortDescription = function(text) {
@@ -111,7 +155,7 @@ var tableRow = function(ingr) {
 	<tr>
 	<td>${ingr.quantity} ${ingr.unit}</td>
 	<td>${ingr.name}</td>
-	<td>SEK ${ingr.price}</td>
+	<td>SEK ${ingr.price.toFixed(2)}</td>
 	</tr>
 	`
 }

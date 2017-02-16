@@ -1,6 +1,8 @@
 $(function() {
+    var apiKey = window.prompt("Enter your Spoonacular API key")
+
     // 1 Instantiate our model
-    var model = new DinnerModel();
+    var model = new DinnerModel(apiKey);
 
     // 2 Load views from the DOM
     var navigationView = new NavigationView($("body"));
@@ -17,5 +19,5 @@ $(function() {
     var navigationViewController = new NavigationViewController(navigationView,model);
 
     // REMOVE
-    // navigationView.createNewDinnerButton.click();
+    navigationView.createNewDinnerButton.click();
 });

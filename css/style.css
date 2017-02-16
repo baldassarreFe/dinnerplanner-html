@@ -18,7 +18,14 @@ html, body {
     overflow: auto;
 }
 
+.loading {
+  animation: spin 2s linear infinite;
+}
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 .row-centered {
     text-align:center;
@@ -214,6 +221,8 @@ span.totalPrice {
 .dish-card>img {
   min-width: 140px;
   min-height: 140px;
+  max-width: 140px;
+  max-height: 140px;
 }
 
 .total-card {
