@@ -7,7 +7,7 @@ var DinnerModel = function(apiKey) {
     var selected = [];
     var obserservers = {
       'numberOfGuestsChange' : [],
-      'selectedDishesChange' : []
+      'selectedDishesChange' : [],
     };
 
     this.addListener = function(eventType, callback) {
@@ -105,151 +105,122 @@ var DinnerModel = function(apiKey) {
         notifySelectedDishesChange();
     }
 
-    this.getMoreByType = function(type, res, err, howMany) {
-      if (!howMany)
-        howMany = 5
-      $.ajax( {
-        url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search',
-        dataType: 'json',
-        accepts: {'json': 'application/json'},
-        headers: {'X-Mashape-Key': apiKey},
-        data: {
-            'instructionsRequired': 'true',
-            'number': howMany,
-            'type': type,
-            'offset': allDishes.filter(d => d.type==type).length
-        },
-        error: err,
-        success: function(dishes) {
-          dishes.results.forEach(d => {
-            let newDish = {}
-            newDish.id = d.id
-            newDish.name = d.title
-            newDish.type = type
-            newDish.image = 'https://spoonacular.com/recipeImages/' + d.image
-            newDish.description = ""
-            newDish.ingredients = []
-
-            $.ajax( {
-              url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+d.id+'/information',
-              dataType: 'json',
-              accepts: {'json': 'application/json'},
-              headers: {'X-Mashape-Key': apiKey},
-              data: {
-                  'includeNutrition': 'false'
-              },
-              error: err,
-              success: function(dishDetails) {
-                newDish.image = dishDetails.image
-                newDish.description = dishDetails.instructions.replace('  ', ' ')
-                dishDetails.extendedIngredients
-                  .forEach(i => {
-                    newDish.ingredients.push({
-                      name: i.name,
-                      quantity: i.amount,
-                      unit: i.unit,
-                      price: 1
-                    })
-                  })
-                allDishes.push(newDish)
-                res(newDish)
-              }
-            })
-          })
-        }
-      })
+    // function that returns a dish of specific
+    this.getDish = function(id) {
+        return allDishes.find(d => d.id == id)
     }
+
+    var allDishes = [];
 
     // Retrieves the dishes that match both the type and any of the keywords
     // specified as parameters. For both parameters, '' or null matches every dish.
     //
-    // search('',null) -> all dishes
-    // search(null, 'starter') -> all starters
-    // search('eggs', '') -> all dishes having 'eggs' in either the name or ingredients list
-    // search(['eggs','cream'], '') -> all dishes having 'eggs' or 'cream' in either the name or ingredients list
-    // search('eggs', 'starter') -> 'starter' as type AND 'eggs' as a keyword
-    // search(['eggs', 'cream'], 'starter') -> 'starter' as type AND ('eggs' OR 'cream' as a keywords)
-    this.search = function(keywords, type) {
+    // localSearch('',null) -> all dishes
+    // localSearch(null, 'starter') -> all starters
+    // localSearch('eggs', '') -> all dishes having 'eggs' in either the name or ingredients list
+    // localSearch(['eggs','cream'], '') -> all dishes having 'eggs' or 'cream' in either the name or ingredients list
+    // localSearch('eggs', 'starter') -> 'starter' as type AND 'eggs' as a keyword
+    // localSearch(['eggs', 'cream'], 'starter') -> 'starter' as type AND ('eggs' OR 'cream' as a keywords)
+    this.localSearch = function(keywords, type) {
       if (keywords && !Array.isArray(keywords))
         keywords = [keywords];
       return allDishes.filter(d => {
           var checkType = !type || d.type == type;
           var checkKeyword = !keywords || keywords.some(kw => d.name.indexOf(kw) != -1) ||
             d.ingredients.map(i => i.name).some(name => keywords.some(kw => name.indexOf(kw) != -1))
-
           return checkType && checkKeyword;
         }
       )
     }
 
-    this.makeSearch = function(keywords, type, res, err) {
-      this.search(keywords, type).forEach(res)
-      searchParam = {}
+    this.moreOfType = function(dishCallback, searchCallback, err, type, howMany) {
+      this.webSearch(
+        dishCallback,
+        searchCallback,
+        err,
+        null,
+        type,
+        allDishes.filter(d => d.type == type).length,
+        howMany)
+    }
+
+    // dishCallback is a callback that gets called for each result
+    // searchCallback is a callback that gets called once at the end of the ajax requests
+    this.webSearch = function(dishCallback, searchCallback, err, keywords, type, offset, howMany) {
+      // Prepare search parameters
+      searchParam = {
+          instructionsRequired: 'true',
+          number: howMany || 5,
+          offset: offset || 0
+      }
       if (keywords)
         searchParam.query = keywords
       if (type)
         searchParam.type = type
+      // Start search
+      ajaxForRecipes(searchParam,
+        dish => {
+          if (!this.getDish(dish.id))
+            allDishes.push(dish)
+          dishCallback(dish)
+        },
+        searchCallback,
+        err)
+    }
+
+    var ajaxForRecipes = function(searchParam, dishCallback, searchCallback, err) {
       $.ajax( {
         url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search',
         dataType: 'json',
         accepts: {'json': 'application/json'},
         headers: {'X-Mashape-Key': apiKey},
-        data: Object.assign(searchParam, {
-            'instructionsRequired': 'true',
-            'number': 15,
-        }),
+        data: searchParam,
         error: err,
-        success: function(dishes) {
-          dishes.results.forEach(d => {
-            let newDish = {}
-            newDish.id = d.id
-            newDish.name = d.title
-            newDish.type = type
-            newDish.image = 'https://spoonacular.com/recipeImages/' + d.image
-            newDish.description = ""
-            newDish.ingredients = []
-            if (!allDishes.some(dd => dd.id==newDish.id)) {
-              $.ajax( {
-                url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+d.id+'/information',
-                dataType: 'json',
-                accepts: {'json': 'application/json'},
-                headers: {'X-Mashape-Key': apiKey},
-                data: {
-                    'includeNutrition': 'false'
-                },
-                error: err,
-                success: function(dishDetails) {
-                  newDish.image = dishDetails.image
-                  newDish.description = dishDetails.instructions.replace('  ', ' ')
-                  dishDetails.extendedIngredients
-                    .forEach(i => {
-                      newDish.ingredients.push({
-                        name: i.name,
-                        quantity: i.amount,
-                        unit: i.unit,
-                        price: 1
-                      })
-                    })
-                  allDishes.push(newDish)
-                  res(newDish)
-                }
-              })
-            }
-          })
-        }
+        success: data => {
+            let count = data.results.length
+            if (count == 0)
+              searchCallback()
+            data.results.forEach(partialDish => ajaxForIngredients(
+              partialDish,
+              dish => {
+                if (dish)
+                  dishCallback(dish)
+                if (--count == 0)
+                  searchCallback()
+              },
+              err))
+          }
       })
     }
 
-    //function that returns a dish of specific
-    this.getDish = function(id) {
-        for (key in allDishes) {
-            if (allDishes[key].id == id) {
-                return allDishes[key];
+    var ajaxForIngredients = function(partialDish, callback, err) {
+        $.ajax( {
+          url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+partialDish.id+'/information',
+          dataType: 'json',
+          accepts: {json: 'application/json'},
+          headers: {'X-Mashape-Key': apiKey},
+          data: {
+              includeNutrition: 'false'
+          },
+          error: err,
+          success: function(dishDetails) {
+            let type = ['appetizer', 'main course', 'dessert'].find(t => dishDetails.dishTypes.includes(t))
+            if (type) {
+              let newDish = {}
+              newDish.id = partialDish.id
+              newDish.name = partialDish.title
+              newDish.type = type
+              newDish.image = dishDetails.image
+              newDish.description = dishDetails.instructions.replace('  ', ' ')
+              newDish.ingredients = dishDetails.extendedIngredients
+                .map(i => new Ingredient(i.name, i.amount, i.unit))
+              callback(newDish)
+            } else {
+              callback()
             }
-        }
+          }
+        })
     }
-
-    var allDishes = [];
 
     // the dishes variable contains an array of all the
     // dishes in the database. each dish has id, name, type,

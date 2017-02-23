@@ -12,5 +12,11 @@ var AllDishesView = function (container) {
 	this.mainGrid = container.find('#mainDishes')
 	this.dessertGrid = container.find('#dessertDishes')
 	this.searchResultsGrid = container.find('#searchResults')
-	this.dishModals = container.find('#dishModals')
+	this.modalContainer = container.find('#dishModals')
+
+	this.grids = {
+		'appetizer': this.starterGrid,
+		'main course': this.mainGrid,
+		'dessert': this.dessertGrid
+	}
 }
